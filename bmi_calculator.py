@@ -2,77 +2,73 @@ import bmi_calculator_tracer
 
 # Store the latest session data
 last_counter = None
-last_sentinel_inputs = None
+last_counter_data = None
+last_sentinel_data = None
 
 def calculate_bmi(weight, height):
     """Calculate BMI using weight in kg and height in meters"""
     return weight / (height ** 2)
 
+def classify_bmi(bmi):
+    if bmi < 18.5:
+        return "Underweight"
+    elif 18.5 <= bmi < 25:
+        return "Normal weight"
+    elif 25 <= bmi < 30:
+        return "Overweight"
+    else:
+        return "Obese"
+
 def counter_controlled_bmi():
-    global last_counter, last_sentinel_inputs
+    global last_counter, last_counter_data, last_sentinel_data
     print("\n=== Counter-Controlled BMI Calculator ===")
     try:
         counter = int(input("Enter how many times you want to calculate BMI: "))
         last_counter = counter
-        bmi_calculator_tracer.write_markdown_truth_table(counter=last_counter, sentinel_inputs=last_sentinel_inputs)
+        counter_data = []
         for i in range(counter):
             print(f"\nCalculation {i+1} of {counter}")
             weight = float(input("Enter weight in kg: "))
             height = float(input("Enter height in meters: "))
             bmi = calculate_bmi(weight, height)
+            classification = classify_bmi(bmi)
             print(f"Your BMI is: {bmi:.2f}")
-            
-            # BMI Categories
-            if bmi < 18.5:
-                print("Category: Underweight")
-            elif 18.5 <= bmi < 25:
-                print("Category: Normal weight")
-            elif 25 <= bmi < 30:
-                print("Category: Overweight")
-            else:
-                print("Category: Obese")
-
+            print(f"Category: {classification}")
+            counter_data.append((weight, height, bmi, classification))
+        last_counter_data = counter_data
         # After the loop, update the truth table
         bmi_calculator_tracer.write_markdown_truth_table(
             counter=last_counter,
-            sentinel_inputs=last_sentinel_inputs
+            counter_data=last_counter_data,
+            sentinel_data=last_sentinel_data
         )
-        
     except ValueError:
         print("Please enter valid numbers!")
 
 def sentinel_controlled_bmi():
-    global last_counter, last_sentinel_inputs
+    global last_counter, last_counter_data, last_sentinel_data
     print("\n=== Sentinel-Controlled BMI Calculator ===")
-    sentinel_inputs = []
+    sentinel_data = []
     while True:
         try:
             weight = float(input("\nEnter weight in kg (or 0 to exit): "))
-            sentinel_inputs.append(weight)
             if weight == 0:
-                last_sentinel_inputs = sentinel_inputs
-
+                sentinel_data.append((0, None, None, None))
+                last_sentinel_data = sentinel_data
                 # After the loop, update the truth table
                 bmi_calculator_tracer.write_markdown_truth_table(
                     counter=last_counter,
-                    sentinel_inputs=last_sentinel_inputs
+                    counter_data=last_counter_data,
+                    sentinel_data=last_sentinel_data
                 )
-                
                 print("Exiting BMI calculator...")
                 break
             height = float(input("Enter height in meters: "))
             bmi = calculate_bmi(weight, height)
+            classification = classify_bmi(bmi)
             print(f"Your BMI is: {bmi:.2f}")
-            
-            # BMI Categories
-            if bmi < 18.5:
-                print("Category: Underweight")
-            elif 18.5 <= bmi < 25:
-                print("Category: Normal weight")
-            elif 25 <= bmi < 30:
-                print("Category: Overweight")
-            else:
-                print("Category: Obese")
+            print(f"Category: {classification}")
+            sentinel_data.append((weight, height, bmi, classification))
         except ValueError:
             print("Please enter valid numbers!")
 
