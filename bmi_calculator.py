@@ -1,11 +1,20 @@
+import bmi_calculator_tracer
+
+# Store the latest session data
+last_counter = None
+last_sentinel_inputs = None
+
 def calculate_bmi(weight, height):
     """Calculate BMI using weight in kg and height in meters"""
     return weight / (height ** 2)
 
 def counter_controlled_bmi():
+    global last_counter, last_sentinel_inputs
     print("\n=== Counter-Controlled BMI Calculator ===")
     try:
         counter = int(input("Enter how many times you want to calculate BMI: "))
+        last_counter = counter
+        bmi_calculator_tracer.write_markdown_truth_table(counter=last_counter, sentinel_inputs=last_sentinel_inputs)
         for i in range(counter):
             print(f"\nCalculation {i+1} of {counter}")
             weight = float(input("Enter weight in kg: "))
@@ -22,18 +31,35 @@ def counter_controlled_bmi():
                 print("Category: Overweight")
             else:
                 print("Category: Obese")
+
+        # After the loop, update the truth table
+        bmi_calculator_tracer.write_markdown_truth_table(
+            counter=last_counter,
+            sentinel_inputs=last_sentinel_inputs
+        )
+        
     except ValueError:
         print("Please enter valid numbers!")
 
 def sentinel_controlled_bmi():
+    global last_counter, last_sentinel_inputs
     print("\n=== Sentinel-Controlled BMI Calculator ===")
+    sentinel_inputs = []
     while True:
         try:
             weight = float(input("\nEnter weight in kg (or 0 to exit): "))
+            sentinel_inputs.append(weight)
             if weight == 0:
+                last_sentinel_inputs = sentinel_inputs
+
+                # After the loop, update the truth table
+                bmi_calculator_tracer.write_markdown_truth_table(
+                    counter=last_counter,
+                    sentinel_inputs=last_sentinel_inputs
+                )
+                
                 print("Exiting BMI calculator...")
                 break
-                
             height = float(input("Enter height in meters: "))
             bmi = calculate_bmi(weight, height)
             print(f"Your BMI is: {bmi:.2f}")
