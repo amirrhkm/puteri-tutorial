@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume – Puteri Nur Karim</title>
+  <style>
+    html,
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, Ubuntu, Cantarell, Noto Sans, sans-serif;
+      line-height: 1.5;
+      color: #111;
+      background: #fff;
+      margin: 0;
+      padding: 0
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 32px auto 64px;
+      padding: 0 16px
+    }
+
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+      align-items: flex-start;
+      border-bottom: 2px solid #222;
+      padding-bottom: 12px;
+      margin-bottom: 20px
+    }
+
+    .name {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      color: #0004ff;
+    }
+
+    .title {
+      font-size: 16px;
+      color: #444;
+      margin-top: 2px
+    }
+
+    .contact {
+      margin-left: auto;
+      min-width: 260px
+    }
+
+    .contact a {
+      color: #111;
+      text-decoration: none;
+      border-bottom: 1px dotted #888
+    }
+
+    .section {
+      margin: 20px 0
+    }
+
+    .section h2 {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #222;
+      margin: 0 0 8px 0;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 6px
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      color: #444;
+      font-size: 13px
+    }
+
+    .role {
+      font-weight: 600
+    }
+
+    .company {
+      font-weight: 600
+    }
+
+    .bullets {
+      margin: 8px 0 0 0;
+      padding-left: 18px
+    }
+
+    .bullets li {
+      margin: 4px 0
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px 16px
+    }
+
+    .pill {
+      display: inline-block;
+      background: #f2f2f2;
+      border: 1px solid #e5e5e5;
+      border-radius: 14px;
+      padding: 4px 10px;
+      margin: 4px 6px 0 0;
+      font-size: 13px
+    }
+
+    .small {
+      font-size: 13px;
+      color: #555
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0 16px 0
+    }
+
+    .actions button {
+      background: #fff;
+      color: #111;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 13px;
+      cursor: pointer
+    }
+
+    .actions button:hover {
+      background: #f7f7f7
+    }
+
+    .section.collapsed > :not(h2) {
+      display: none
+    }
+
+    .section h2 { cursor: pointer }
+
+    body.dark { background:#111; color:#eee }
+    body.dark .title{ color:#cfcfcf }
+    body.dark .header{ border-bottom-color:#444 }
+    body.dark .section h2{ color:#eee; border-bottom-color:#333 }
+    body.dark .pill{ background:#1e1e1e; border-color:#333; color:#ddd }
+    body.dark .actions button{ background:#1a1a1a; color:#eee; border-color:#333 }
+
+    @media print {
+      .page {
+        margin: 0;
+        padding: 0
+      }
+
+      .header {
+        margin-bottom: 12px
+      }
+
+      a {
+        color: #111;
+        text-decoration: none;
+        border: 0
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page" role="main">
+    <header class="header">
+      <div>
+        <div class="name">Puteri Nur Karim</div>
+        <div class="title">Software Engineer</div>
+      </div>
+      <div class="contact small">
+        <div><strong>Email:</strong> <a href="mailto:you@example.com">adgsberberbebv@example.com</a></div>
+        <div><strong>Phone:</strong> +60 123456789</div>
+        <div><strong>Location:</strong> Kuala Lumpur, Malaysia</div>
+        <div><strong>LinkedIn:</strong> <a
+            href="https://www.linkedin.com/in/your-handle">linkedin.com/in/puteri-nur-karim</a></div>
+        <div><strong>GitHub:</strong> <a href="https://github.com/your-handle">github.com/puteri-nur-karim</a></div>
+      </div>
+    </header>
+
+    <div class="actions small" role="toolbar" aria-label="Resume actions">
+      <button id="btn-print" type="button">Print</button>
+      <button id="btn-copy-email" type="button">Copy Email</button>
+      <button id="btn-collapse" type="button">Collapse All</button>
+      <button id="btn-expand" type="button">Expand All</button>
+    </div>
+
+    <section class="section" aria-labelledby="summary-heading">
+      <h2 id="summary-heading">Summary</h2>
+      <p class="small">Brief 2–3 sentence value statement highlighting your experience, strengths, and what you’re
+        looking for. For example: Experienced software engineer with 8+ years building reliable, scalable systems. I
+        love simplifying complex problems and shipping high-quality products.</p>
+      <p class="small">Experienced software engineer with 8+ years building reliable, scalable systems. I love
+        simplifying complex problems and shipping high-quality products.</p>
+    </section>
+
+    <section class="section" aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Experience</h2>
+
+      <article>
+        <div class="meta">
+          <div class="role">Senior Software Engineer</div>
+          <div class="company">Awesome Company</div>
+          <div>Jan 2022 – Present</div>
+          <div>Singapore</div>
+        </div>
+        <ul class="bullets">
+          <li>Led development of XYZ feature used by 1M+ monthly users, improving conversion by 12%.</li>
+          <li>Designed and implemented a service that reduced data processing time from 6h to 45m.</li>
+          <li>Mentored 3 engineers; introduced code review checklists that cut defects by 30%.</li>
+        </ul>
+      </article>
+
+    <section class="section" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Skills</h2>
+      <div class="grid small">
+        <div>
+          <div><strong>Languages</strong></div>
+          <div>
+            <span class="pill">Go</span><span class="pill">TypeScript</span><span class="pill">Python</span><span
+              class="pill">SQL</span>
+          </div>
+        </div>
+        <div>
+          <div><strong>Frameworks & Tools</strong></div>
+          <div>
+            <span class="pill">React</span><span class="pill">Node.js</span><span class="pill">Docker</span><span
+              class="pill">Kubernetes</span>
+          </div>
+        </div>
+        <div>
+          <div><strong>Cloud & Infra</strong></div>
+          <div>
+            <span class="pill">AWS</span><span class="pill">GCP</span><span class="pill">Terraform</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
+      <article>
+        <div class="meta">
+          <div class="role">Project Name</div>
+          <div class="small">Open-source / Personal</div>
+        </div>
+        <p class="small">One-liner describing the impact and what you built. Include links if available: <a
+            href="https://github.com/your-handle/your-project">github.com/your-handle/your-project</a>.</p>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+      <div class="meta">
+        <div class="company">Your University</div>
+        <div>B.Sc. in Computer Science</div>
+        <div>2015 – 2019</div>
+      </div>
+    </section>
+
+    <section class="section small" aria-labelledby="extras-heading">
+      <h2 id="extras-heading">Extras</h2>
+      <p>Certifications, speaking, publications, awards, languages, volunteer work.</p>
+    </section>
+
+  </main>
+  <script>
+  (function(){
+    var q = function(sel){ return document.querySelector(sel) };
+    var qa = function(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)) };
+
+    var btnPrint = q('#btn-print');
+    var btnCopyEmail = q('#btn-copy-email');
+    var btnCollapse = q('#btn-collapse');
+    var btnExpand = q('#btn-expand');
+
+    if(btnPrint){ 
+      btnPrint.addEventListener('click',
+        function() { 
+          window.print()
+        }
+      )
+    }
+
+    if(btnCopyEmail){
+      btnCopyEmail.addEventListener('click',
+        function() {
+          var link = document.querySelector('.contact a[href^="mailto:"]');
+          var email = link ? (link.textContent || '').trim() : '';
+          var toCopy = email || (link ? (link.getAttribute('href')||'').replace('mailto:','') : '');
+          if(!toCopy){
+            return
+          }
+          if(navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(toCopy)
+          } else {
+            var ta = document.createElement('textarea');
+            ta.value = toCopy; document.body.appendChild(ta); ta.select();
+            try{
+              document.execCommand('copy')
+            } catch(e) {
+
+            }
+            document.body.removeChild(ta)
+          }
+        }
+      )
+    }
+
+    var sections = qa('section.section');
+    var setAll = function(collapsed){
+      sections.forEach(function(s){ if(collapsed){ s.classList.add('collapsed') } else { s.classList.remove('collapsed') } })
+    };
+    if(btnCollapse){ btnCollapse.addEventListener('click', function(){ setAll(true) }) }
+    if(btnExpand){ btnExpand.addEventListener('click', function(){ setAll(false) }) }
+
+    qa('.section h2').forEach(function(h){
+      h.addEventListener('click', function(){ h.parentElement.classList.toggle('collapsed') })
+    })
+  })();
+  </script>
+</body>
+
+</html>
